@@ -18,13 +18,9 @@ typedef struct block {
 
 /* Size of a memory element, 32 or 64 bits */
 enum {
-  word_size = __SIZE_WIDTH__ / 8, /**< size of memory element */
-#if __SIZE_WIDTH__ == 64
-  log2_word_size = 3,
-#else
-  log2_word_size = 2,
-#endif
-  header_size = 3 * word_size, /**< size, previous/next block addresses */
+  word_size = sizeof(size_t), /**< size of memory element */
+  log2_word_size = __builtin_ctz(sizeof(size_t)),
+  header_size = sizeof(block_t), /**< size, previous/next block addresses */
 };
 
 /* Current free space manipulated by the arena */
