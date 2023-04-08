@@ -18,8 +18,8 @@ typedef struct block {
 
 /* Size of a memory element, 32 or 64 bits */
 enum {
-  word_size = sizeof(size_t), /**< size of memory element */
-  log2_word_size = __builtin_ctz(sizeof(size_t)),
+  word_size = sizeof(int), /**< size of memory element */
+  log2_word_size = __builtin_ctz(sizeof(int)),
   header_size = sizeof(block_t), /**< size, previous/next block addresses */
 };
 
