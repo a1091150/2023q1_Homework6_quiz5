@@ -7,8 +7,13 @@
 
 /* The basic data structure describing a free space arena element */
 typedef struct block {
-  int size;                  /**< Size of the data payload */
-  struct block *prev, *next; /**< Pointer to the previous/next block */
+  int size; /**< Size of the data payload */
+  union {
+    char *payload;
+    struct {
+      struct block *prev, *next; /**< Pointer to the previous/next block */
+    };
+  };
 } block_t;
 
 /* Size of a memory element, 32 or 64 bits */
